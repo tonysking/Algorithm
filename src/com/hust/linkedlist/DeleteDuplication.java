@@ -10,7 +10,7 @@ public class DeleteDuplication {
     // 按 无序链表 写的方法
     public ListNode deleteDuplication(ListNode pHead) {
         HashMap<Integer, Integer> map = new HashMap<>();
-        // 删除重复节点1个
+        // 删除重复节点  保留1个
         ListNode pre = null;
         ListNode cur = pHead;
         while (cur != null) {
@@ -24,7 +24,7 @@ public class DeleteDuplication {
             cur = cur.next;
         }
 
-        // 删除出现过重复的所有节点
+        /*// 删除出现过重复的所有节点
         pre = null;
         cur = pHead;
         while (cur != null) {
@@ -40,7 +40,7 @@ public class DeleteDuplication {
                 pre = cur;
             }
             cur = cur.next;
-        }
+        }*/
         return pHead;
     }
 }

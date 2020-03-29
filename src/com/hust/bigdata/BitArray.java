@@ -13,5 +13,10 @@ public class BitArray {
         int intIndex = 30000 / 32; // 获取对应的整数下标
         int bitIndex = 30000 % 32; // 获取对应整数的对应位
         arr[intIndex] = (arr[intIndex] | 1 << bitIndex); // 位或赋值
+
+        // 置0
+        // (arr[intIndex] && ~(1 << bitIndex)) 取反后位与
+        System.out.println(1 << 2);// 100
+        System.out.println(~(1 << 2)); // 011
     }
 }

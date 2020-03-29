@@ -1,6 +1,7 @@
 package com.hust.sort;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class Code_03_HeapSort {
 
@@ -31,11 +32,14 @@ public class Code_03_HeapSort {
 		// index 的左孩子 index * 2 + 1
 		int left = index * 2 + 1;
 		while (left < size) {
+			// 左右孩子中的较大值
 			int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
+			// 左右孩子和父节点index中的最大值
 			largest = arr[largest] > arr[index] ? largest : index;
 			if (largest == index) {
 				break;
 			}
+			// 若最大值非父节点index,则交换
 			swap(arr, largest, index);
 			index = largest;
 			left = index * 2 + 1;
@@ -126,6 +130,10 @@ public class Code_03_HeapSort {
 		printArray(arr);
 		heapSort(arr);
 		printArray(arr);
+
+
+		// 其中siftDownComparable方法即为heapify调整堆方法
+		PriorityQueue priorityQueue = new PriorityQueue();
 	}
 
 }
