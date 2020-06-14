@@ -1,4 +1,4 @@
-package com.leet.array;
+package com.leet.dp;
 
 public class MaximalSquare_failed {
 
