@@ -1,5 +1,7 @@
 package com.leet.tree;
 
+import java.util.List;
+
 public class TreeNode {
     int val;
     TreeNode left;
@@ -41,5 +43,13 @@ public class TreeNode {
         n3.left = n6;
         n3.right = n7;
         return root;
+    }
+
+    public void printLevel() {
+        LevelOrder res = new LevelOrder();
+        List<List<Integer>> lists = res.levelOrder(this);
+        for(List<Integer> list : lists) {
+            System.out.println(list);
+        }
     }
 }

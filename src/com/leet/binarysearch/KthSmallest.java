@@ -1,6 +1,9 @@
 package com.leet.binarysearch;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 378. 有序矩阵中第K小的元素
@@ -52,5 +55,29 @@ public class KthSmallest {
             }
         }
         return num >= k;
+    }
+
+    // 最小堆(归并)
+    public int kthSmallestHeap(int[][] matrix, int k) {
+        int n = matrix.length;
+        // int[]{当前数字，行，列}
+        Queue<int[]> q = new PriorityQueue<>(Comparator.comparing(a -> a[0]));
+
+        // 将第一列放入堆中
+        for (int i = 0; i < n; i++) {
+            q.offer(new int[]{matrix[i][0], i ,0});
+        }
+
+        // 获得最小堆中的前k - 1个数
+        for (int i = 0; i < k - 1; i++) {
+            int[] min = q.poll();
+            // 若当前最小值所在行还未取尽，将右边的数加入堆中
+            if (min[2] != n - 1) {
+                int minRow = min[1];
+                int minCol = min[2];
+                q.offer(new int[]{matrix[minRow][minCol + 1], minRow, minCol + 1});
+            }
+        }
+        return q.poll()[0];
     }
 }
