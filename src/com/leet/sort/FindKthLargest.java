@@ -71,15 +71,59 @@ public class FindKthLargest {
     }
 
     public void swap(int[] a, int i, int j) {
+        // 对自己做异或结果为0
+        if (i == j) {
+            return;
+        }
         a[i] = a[i] ^ a[j];
         a[j] = a[i] ^ a[j];
         a[i] = a[i] ^ a[j];
     }
 
 
+    // 快排选择
+    public int findKthLargestQuick(int[] nums, int k) {
+        return quickSelect(nums, 0, nums.length - 1, nums.length - k);
+    }
+
+    private int quickSelect(int[] nums, int l, int r, int index) {
+        int q = randomPartition(nums, l, r);
+        if (q == index) {
+            return nums[q];
+        } else {
+            return q < index ? quickSelect(nums, q + 1, r, index) : quickSelect(nums, l, q - 1, index);
+        }
+
+    }
+
+    private int randomPartition(int[] nums, int l, int r) {
+        // 随机选取
+        int i = l + (int)(Math.random() * (r - l + 1));
+        swap(nums, i, r);
+
+        // partion
+        int x = nums[r];
+
+        int less = l - 1;
+        int more = r;
+        while (l < more) {
+            if (nums[l] <= x) {
+                swap(nums, ++less, l);
+                l++;
+            } else {
+                swap(nums, --more, l);
+            }
+        }
+        swap(nums, more, r);
+        return more;
+    }
+
+
     public static void main(String[] args) {
         int[] nums = new int[]{3, 2, 1, 5, 6, 4};
+        int[] nums2 = new int[]{7, 6, 5, 4, 3, 2, 1};
         FindKthLargest res = new FindKthLargest();
-        Assert.assertEquals(res.findKthLargestHeap(nums, 2), 5);
+//        Assert.assertEquals(res.findKthLargestHeap(nums, 2), 5);
+        Assert.assertEquals(res.findKthLargestQuick(nums2, 5), 3);
     }
 }
