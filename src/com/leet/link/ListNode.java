@@ -17,4 +17,14 @@ public class ListNode {
     }
     return head;
   }
+
+  public void print() {
+    ListNode head = this;
+    while (head != null) {
+      System.out.print(head.val);
+      System.out.print("->");
+      head = head.next;
+    }
+    System.out.println("null");
+  }
 }
