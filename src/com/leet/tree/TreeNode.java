@@ -2,6 +2,9 @@ package com.leet.tree;
 
 import java.util.List;
 
+/**
+ * created tree by scanner with input n & root: see IsBalanced
+ */
 public class TreeNode {
     int val;
     TreeNode left;
